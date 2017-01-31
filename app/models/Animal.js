@@ -5,7 +5,8 @@ var Model = require('objection').Model;
  * @constructor
  */
 function Animal() {
-  Model.apply(this, arguments);
+  console.log('cheguei aquaaiaa');
+  //Model.apply(this, arguments);
 }
 
 Model.extend(Animal);

@@ -1,19 +1,12 @@
 var express = require('express'),
+Knex = require('knex'),
 bodyParser = require('body-parser'),
 expressValidator = require('express-validator'),
 expressSession = require('express-session'),
 consign = require('consign'),
-Knex = require('knex'),
-knexConfig = require('../knexfile');
-
-const objection = require('objection');
-const Promise = objection.Promise;
-const Model = objection.Model;
-
+knexConfig = require('../knexfile'),
 Model = require('objection').Model;
 
-var app = express()
-    .use(bodyParser.json());
 
 // Initialize knex.
 var knex = Knex(knexConfig.development);
@@ -23,7 +16,18 @@ var knex = Knex(knexConfig.development);
 // the Model.bindKnex method.
 Model.knex(knex);
 
-const createSchema = Promise.coroutine(function *() {
+
+
+function Animal() {
+  Model.apply(this, arguments);
+}
+
+var app = express()
+    .use(bodyParser.json())
+
+//app.set('view engine', 'html');
+
+//const createSchema = Promise.coroutine(function *() {
   //yield knex.schema.dropTableIfExists('Animal');
   //yield knex.schema.dropTableIfExists('Person');
   
@@ -59,12 +63,12 @@ const createSchema = Promise.coroutine(function *() {
   });*/
 
 
-});
+//});
 
 // Run the whole thing.
-createSchema()
-.then()
-.finally(() => knex.destroy());
+// createSchema()
+// .then()
+// .finally(() => knex.destroy());
 
 
 
@@ -74,5 +78,5 @@ consign()
 	.then('app/models')
 	.then('app/controllers')
 	.into(app);
-  
+
   module.exports = app;

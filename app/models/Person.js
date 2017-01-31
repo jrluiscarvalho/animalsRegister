@@ -1,13 +1,13 @@
 var Model = require('objection').Model;
-var Animal = require('./Animal')
-var Movie = require('./Movie')
+var Animal = require('./Animal');
+
 
 /**
  * @extends Model
  * @constructor
  */
 function Person() {
-  Model.apply(this, arguments);
+  //Model.apply(this, arguments);
 }
 
 Model.extend(Person);
@@ -54,7 +54,7 @@ Person.relationMappings = {
     }
   },
 
-  movies: {
+ /* movies: {
     relation: Model.ManyToManyRelation,
     modelClass: Movie,
     join: {
@@ -66,7 +66,7 @@ Person.relationMappings = {
       },
       to: 'Movie.id'
     }
-  },
+  },*/
 
   children: {
     relation: Model.HasManyRelation,
