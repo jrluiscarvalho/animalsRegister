@@ -5,7 +5,6 @@ var Model = require('objection').Model;
  * @constructor
  */
 function Animal() {
-  console.log('cheguei aquaaiaa');
   //Model.apply(this, arguments);
 }
 
